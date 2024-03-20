@@ -1,30 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { FilterMatchMode } from "primereact/api";
 import { InputText } from "primereact/inputtext";
+import { getTokenAuth } from "../utils/auth-token";
+import { getCertificates } from "../utils/certificates";
 
 const TableCertificatePage = () => {
+  useEffect(() => {
+    proceedToken()
+      .then((res) => {
+        const token = res.data;
+        return getCertificate(token);
+      })
+      .then((resData) => setDataCertificate(resData.data))
+      .then(() => setIsLoading(false))
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
+  const [dataToken, setDataToken] = useState({});
+  const proceedToken = () => {
+    const res = getTokenAuth();
+    return res;
+  };
+  const getCertificate = (token) => {
+    setIsLoading(true);
+    const resData = getCertificates(token, {
+      meta: "total_count",
+      limit: "99999",
+    });
+    return resData;
+  };
   const [isLoading, setIsLoading] = useState(false);
   const [globalFilterValue, setGlobalFilterValue] = useState("");
-  const [dataCertificates, setDataCertificate] = useState([
-    {
-      id: 1,
-      nama: "(BLU) RUMAH SAKIT UMUM DR SARDJITO YOGYAKARTA DITJEN PELAYANAN KESEHATAN KEMENTERIAN KESEHATAN",
-      alamat: "Jl. Kesehatan No. 1 Sekip",
-      propinsi: "DI Yogyakarta",
-      jenis_permohonan: "Sertifikasi Baru\r ",
-      no_sertifikat: "PW-S.01.04.1.3.333.05.21-0019",
-      jenis_sediaan: "Plasma Segar Beku dari Darah Lengkap",
-      tanggal_terbit: "2021-05-20",
-      tanggal_berlaku: "2026-07-07",
-      jenis_produk: "Sarana Khusus",
-      tanggal_pembaharuan: "2024-03-18T23:00:02.000Z",
-    },
-  ]);
+  const [dataCertificates, setDataCertificate] = useState([]);
+  console.log("dataCertificates: ", dataCertificates);
   const [filters, setFilters] = useState({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-    name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+    nama: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
   });
 
   const onGlobalFilterChange = (e) => {
@@ -81,6 +95,8 @@ const TableCertificatePage = () => {
         paginator
         rows={10}
         dataKey="id"
+        filters={filters}
+        filterDisplay="row"
         loading={isLoading}
         header={header}
         emptyMessage="No customers found."
