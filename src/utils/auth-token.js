@@ -2,8 +2,8 @@ import { clientPub } from "./client";
 
 export async function getTokenAuth() {
   const dataLogin = {
-    email: "yusran.harsyam@pom.go.id",
-    password: "Wasprod@2023",
+    email: process.env.REACT_APP_EMAIL,
+    password: process.env.REACT_APP_PASSWORD,
   };
   return clientPub
     .post(`/auth/login`, dataLogin)
