@@ -41,6 +41,7 @@ const TableCertificatePage = () => {
     nama: { value: null, matchMode: FilterMatchMode.CONTAINS },
     alamat: { value: null, matchMode: FilterMatchMode.CONTAINS },
     propinsi: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    jenis_permohonan: { value: null, matchMode: FilterMatchMode.CONTAINS },
     no_sertifikat: { value: null, matchMode: FilterMatchMode.CONTAINS },
     jenis_sediaan: { value: null, matchMode: FilterMatchMode.CONTAINS },
     tanggal_terbit: { value: null, matchMode: FilterMatchMode.CONTAINS },
