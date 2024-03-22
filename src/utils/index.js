@@ -1,0 +1,11 @@
+export const convertDate = (dateString) => {
+    const date = new Date(dateString);
+
+    // Extract year, month, and day
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-indexed, so we add 1
+    const day = String(date.getDate()).padStart(2, "0");
+
+    // Form the "YYYY-MM-DD" format
+    return `${year}-${month}-${day}`;
+};

@@ -38,7 +38,14 @@ const TableCertificatePage = () => {
   console.log("dataCertificates: ", dataCertificates);
   const [filters, setFilters] = useState({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-    nama: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+    nama: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    alamat: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    propinsi: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    no_sertifikat: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    jenis_sediaan: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    tanggal_terbit: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    tanggal_berlaku: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    jenis_produk: { value: null, matchMode: FilterMatchMode.CONTAINS },
   });
 
   const onGlobalFilterChange = (e) => {
@@ -49,18 +56,6 @@ const TableCertificatePage = () => {
 
     setFilters(_filters);
     setGlobalFilterValue(value);
-  };
-
-  const convertDate = (dateString) => {
-    const date = new Date(dateString);
-
-    // Extract year, month, and day
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-indexed, so we add 1
-    const day = String(date.getDate()).padStart(2, "0");
-
-    // Form the "YYYY-MM-DD" format
-    return `${year}-${month}-${day}`;
   };
 
   const renderHeader = () => {
@@ -79,14 +74,6 @@ const TableCertificatePage = () => {
   };
 
   const header = renderHeader();
-
-  const tanggalPembaharuanTemplate = (rowData) => {
-    return (
-      <div className="flex align-items-center gap-2">
-        <span>{convertDate(rowData.tanggal_pembaharuan)}</span>
-      </div>
-    );
-  };
 
   return (
     <div>
@@ -162,14 +149,6 @@ const TableCertificatePage = () => {
           header="Jenis Produk"
           filter
           filterPlaceholder="Search by jenis produk"
-          style={{ minWidth: "12rem" }}
-        />
-        <Column
-          field="tanggal_pembaharuan"
-          header="Tanggal Pembaharuan"
-          filter
-          body={tanggalPembaharuanTemplate}
-          filterPlaceholder="Search by alamat"
           style={{ minWidth: "12rem" }}
         />
       </DataTable>
