@@ -82,6 +82,7 @@ const TableCertificatePage = () => {
         value={dataCertificates}
         paginator
         rows={10}
+        removableSort
         dataKey="id"
         filters={filters}
         filterDisplay="row"
@@ -93,6 +94,7 @@ const TableCertificatePage = () => {
           field="nama"
           header="Nama"
           filter
+          sortable
           filterPlaceholder="Search by name"
           style={{ minWidth: "12rem" }}
         />
@@ -100,6 +102,7 @@ const TableCertificatePage = () => {
           field="alamat"
           header="Alamat"
           filter
+          sortable
           filterPlaceholder="Search by alamat"
           style={{ minWidth: "12rem" }}
         />
@@ -107,6 +110,7 @@ const TableCertificatePage = () => {
           field="propinsi"
           header="Provinsi"
           filter
+          sortable
           filterPlaceholder="Search by Provinsi"
           style={{ minWidth: "12rem" }}
         />
@@ -114,6 +118,7 @@ const TableCertificatePage = () => {
           field="jenis_permohonan"
           header="Jenis Permohonan"
           filter
+          sortable
           filterPlaceholder="Search by jenis permohonan"
           style={{ minWidth: "12rem" }}
         />
@@ -121,6 +126,7 @@ const TableCertificatePage = () => {
           field="no_sertifikat"
           header="Nomor Sertifikat"
           filter
+          sortable
           filterPlaceholder="Search by nomor sertifikat"
           style={{ minWidth: "12rem" }}
         />
@@ -128,6 +134,7 @@ const TableCertificatePage = () => {
           field="jenis_sediaan"
           header="Jenis Sediaan"
           filter
+          sortable
           filterPlaceholder="Search by jenis sediaan"
           style={{ minWidth: "12rem" }}
         />
@@ -135,6 +142,7 @@ const TableCertificatePage = () => {
           field="tanggal_terbit"
           header="Tanggal Terbit"
           filter
+          sortable
           filterPlaceholder="Search by Tanggal Terbit"
           style={{ minWidth: "12rem" }}
         />
@@ -142,6 +150,7 @@ const TableCertificatePage = () => {
           field="tanggal_berlaku"
           header="Tanggal Berlaku"
           filter
+          sortable
           filterPlaceholder="Search by tanggal berlaku"
           style={{ minWidth: "12rem" }}
         />
@@ -149,6 +158,7 @@ const TableCertificatePage = () => {
           field="jenis_produk"
           header="Jenis Produk"
           filter
+          sortable
           filterPlaceholder="Search by jenis produk"
           style={{ minWidth: "12rem" }}
         />
