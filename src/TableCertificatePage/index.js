@@ -82,6 +82,7 @@ const TableCertificatePage = () => {
         value={dataCertificates}
         paginator
         rows={10}
+        rowsPerPageOptions={[10, 25, 50, 100]}
         removableSort
         dataKey="id"
         filters={filters}
